@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   AppCenter-Config.plist
+   RouteRunner
+
+   Created by Wael Naamah on 28/01/2023.
+   Copyright (c) 2023 ___ORGANIZATIONNAME___. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+  <key>AppSecret</key>
+  <string>400152b2-9512-4c1c-886c-d8cb34c6a78b</string>
+  </dist>
+</plist>
