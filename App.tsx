@@ -15,14 +15,13 @@ import {
   Text,
   useColorScheme,
   View,
-  Button,
   Alert,
 } from 'react-native';
 
 import Crashes from 'appcenter-crashes';
-import Analytics from 'appcenter-analytics';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Input} from './src/components/Input';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -41,24 +40,22 @@ function Section({children, title}: SectionProps): JSX.Element {
         ]}>
         {title}
       </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+      {children}
     </View>
   );
 }
 
-export default class App extends React.Component {
-  constructor(props: {} | Readonly<{}>) {
+type AppProps = {};
+type AppState = {enteredText: string};
+
+export default class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
     super(props);
 
     this.checkPreviousSession();
+    this.state = {
+      enteredText: '',
+    };
   }
 
   async checkPreviousSession() {
@@ -87,14 +84,17 @@ export default class App extends React.Component {
             style={{
               backgroundColor: Colors.white,
             }}>
-            <Section title="Step One">
-              Welcome to Route-Runner app, let's build amazing things!.
-              <Button
-                title="track event"
-                onPress={() => {
-                  Analytics.trackEvent('My custom event', {Internet: 'WIFI'});
-                }}
+            <Section title="Text Input">
+              <Text>Let's try TextInput with Typescript!{'\n'}</Text>
+
+              <Input
+                placeholder="type anything..."
+                value={this.state.enteredText}
+                onChange={event =>
+                  this.setState({enteredText: event.nativeEvent.text})
+                }
               />
+              <Text>you typed: {this.state.enteredText}</Text>
             </Section>
           </View>
         </ScrollView>
